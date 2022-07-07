@@ -16,7 +16,9 @@ const soma3 = (a, b) => {
 
 const soma4 = (a) => a + a;
 
+console.log("começa")
 console.log(soma1(8, 10))
 console.log(soma2(2, 6))
 console.log(soma3(2, 1))
 console.log(soma4(12, 15))
+console.log("termina")
