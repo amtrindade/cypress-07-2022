@@ -23,7 +23,7 @@ it("String of tests", () => {
 
 })
 
-it.only("Tests of numbers", () => {
+it("Tests of numbers", () => {
     const number1 = 5;
     const fnumber2 = 5.76876444564
 
