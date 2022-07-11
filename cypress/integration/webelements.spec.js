@@ -27,13 +27,19 @@ describe('Should be validate title page', () => {
 
         it('Send text to textfield', () => {
             cy.visit("/elementsweb.html");
-            cy.get("[name='txtbox1']")
-                .type("Antônio")
-                .should('have.value', 'Antônio');
+            cy.get("[name='txtbox1']").type("Antônio").should('have.value', 'Antônio');
 
             cy.get(`[name='txtbox2']`)
                 .type("envia texto", {force: true})
                 .should("have.value", "envia texto")
+        })
+
+        it('Work with RadioButton', () => {
+            cy.visit("/elementsweb.html");
+            cy.get("[name='radioGroup1']").first().check().should("be.checked");
+            cy.get("[name='radioGroup1']").last().check().should("be.checked");
+            cy.get("[name='radioGroup1']").check("Radio 3").should("be.checked");
+            cy.get("[name='radioGroup1']").last().should("not.be.checked");
         })
     })
 })
