@@ -25,7 +25,7 @@ describe('Should be validate title page', () => {
                 .should("have.text", "TextField:")
         })
 
-        it.only('Send text to textfield', () => {
+        it('Send text to textfield', () => {
             cy.visit("/elementsweb.html");
             cy.get("[name='txtbox1']")
                 .type("Antônio")
@@ -34,8 +34,6 @@ describe('Should be validate title page', () => {
             cy.get(`[name='txtbox2']`)
                 .type("envia texto", {force: true})
                 .should("have.value", "envia texto")
-
         })
-
     })
 })

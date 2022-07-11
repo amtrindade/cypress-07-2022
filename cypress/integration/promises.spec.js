@@ -22,7 +22,6 @@ const system = () => {
     const prom = getValue();
     prom.then(value => {
         console.log(`O valor é: ${value}`)
-        
     })
     console.log('Finished')
 
