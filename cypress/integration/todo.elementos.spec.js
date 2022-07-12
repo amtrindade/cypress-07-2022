@@ -15,15 +15,18 @@ describe("Todo Spec", () => {
 
     })
 
-    it.only('Should check task', () => {
+    it('Should check task', () => {
         cy.visit("https://example.cypress.io/todo");
 
         const task = "Fix the bug";
 
         cy.get('[data-test="new-todo"]').type(`${task}{enter}`);
-        cy.get('.todo-list li').last().check();      
-
+        //cy.get('.todo-list li').last().find('input').check();
+        cy.get('.todo-list').contains(`${task}`)
+            .parent().find('input').check().should('be.checked');
     })
+
+
 
 
 })
