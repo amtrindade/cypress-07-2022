@@ -88,7 +88,7 @@ describe('Should be validate title page', () => {
             cy.visit("/elementsweb.html");
 
             cy.get("[name='multiselectdropdown']").select(["Item 1", "Item 3", "Item 6"]);
-            
+
             //TODO validar que os 3 selecionados são os selecionados e que são 3
         })
     })
