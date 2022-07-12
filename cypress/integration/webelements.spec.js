@@ -45,7 +45,7 @@ describe('Should be validate title page', () => {
             cy.get("[name='radioGroup1']").should("have.length", 4);
         })
 
-        it.only('Work with CheckBox', () => {
+        it('Work with CheckBox', () => {
             cy.visit("/elementsweb.html");
 
             cy.get("[name='chkbox']").should("have.length", 4); 
@@ -62,6 +62,34 @@ describe('Should be validate title page', () => {
             
             //Não validou todos checados da forma como deveria
             cy.get("[name='chkbox']").should("be.checked");
+        })
+
+        it('Work with single select', () => {
+            cy.visit("/elementsweb.html");
+
+            cy.get("[name='dropdownlist']")
+                .select("Item 2")
+                .should("have.value", "item2");
+
+            cy.get("[name='dropdownlist']")
+                .select("Item 10")
+                .should("have.value", "item10");
+
+            cy.get("[name='dropdownlist'] option").should("have.length", 10);
+
+            cy.get("[name='dropdownlist'] option")
+                .first()
+                .should("have.value", "item1");
+
+                //TODO validar todas as opções do select
+        })
+
+        it('Work with multiple select', () => {
+            cy.visit("/elementsweb.html");
+
+            cy.get("[name='multiselectdropdown']").select(["Item 1", "Item 3", "Item 6"]);
+            
+            //TODO validar que os 3 selecionados são os selecionados e que são 3
         })
     })
 })
