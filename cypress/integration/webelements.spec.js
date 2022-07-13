@@ -92,7 +92,7 @@ describe('Should be validate title page', () => {
 
         })
 
-        it.only('Work with multiple select', () => {
+        it('Work with multiple select', () => {
             cy.visit("/elementsweb.html");
 
             cy.get("[name='multiselectdropdown']").select(["Item 1", "Item 3", "Item 6"]);
