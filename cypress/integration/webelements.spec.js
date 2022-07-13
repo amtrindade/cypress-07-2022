@@ -75,21 +75,32 @@ describe('Should be validate title page', () => {
                 .select("Item 10")
                 .should("have.value", "item10");
 
-            cy.get("[name='dropdownlist'] option").should("have.length", 10);
-
             cy.get("[name='dropdownlist'] option")
                 .first()
                 .should("have.value", "item1");
 
-                //TODO validar todas as opções do select
+            cy.get("[name='dropdownlist'] option").should("have.length", 10);
+
+            cy.get("[name='dropdownlist'] option").then($list => {
+                const values = [];
+                $list.each(function() {
+                    values.push(this.innerText)
+                })
+                expect(values).to.include.members(["Item 1", "Item 2", "Item 3", "Item 4", "Item 5",
+                    "Item 6", "Item 7", "Item 8", "Item 9", "Item 10",])
+            })
+
         })
 
-        it('Work with multiple select', () => {
+        it.only('Work with multiple select', () => {
             cy.visit("/elementsweb.html");
 
             cy.get("[name='multiselectdropdown']").select(["Item 1", "Item 3", "Item 6"]);
 
-            //TODO validar que os 3 selecionados são os selecionados e que são 3
+            cy.get("[name='multiselectdropdown']").then($el => {
+                expect($el.val()).to.have.length(3);
+                expect($el.val()).to.be.deep.equal(["item1", "item3","item6"]);
+            })
         })
     })
 })

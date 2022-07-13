@@ -33,4 +33,18 @@ it("Tests of numbers", () => {
 
     expect(fnumber2).to.be.closeTo(5.7, 0.1);
 
+
+})
+
+it("List values", () => {
+    const values = ["One", "Two"];
+
+    expect(values).to.include.members(["One", "Two"]);
+})
+
+it.only("Compare object", () =>{
+    const obj1 = [1, 2, 3];
+    const obj2 = [1, 2, 3];
+
+    expect(obj1).to.be.deep.equal(obj2);
 })
