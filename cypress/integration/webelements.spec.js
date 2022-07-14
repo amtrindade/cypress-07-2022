@@ -2,15 +2,25 @@
 
 describe('Should be validate title page', () => {
 
-    it('Shoud be title', () => {
+    before(() => {
         cy.visit("/");
+     })
+
+    it('Shoud be title', () => {        
         cy.title().should("to.be.equal", "Treino Automação de Testes")
     })
 
     describe('WebElements test', ()=> {
 
-        it('Display textField', ()=>{
+        before(() => {
             cy.visit("/elementsweb.html");
+         })
+     
+         beforeEach(() => {
+             cy.reload();
+         })
+
+        it('Display textField', ()=>{            
             cy.title().should("to.be.equal", "WebElements Test Page Lab");
 
             cy.get("[name='txtbox1']").should("be.enabled");
@@ -19,14 +29,12 @@ describe('Should be validate title page', () => {
                 .should("not.be.enabled");
         });
 
-        it('Should validade label', () => {
-            cy.visit("/elementsweb.html");
+        it('Should validade label', () => {            
             cy.get('form > :nth-child(1) > .text-muted')
                 .should("have.text", "TextField:")
         })
 
         it('Send text to textfield', () => {
-            cy.visit("/elementsweb.html");
             cy.get("[name='txtbox1']").type("Antônio").should('have.value', 'Antônio');
 
             cy.get(`[name='txtbox2']`)
@@ -35,7 +43,6 @@ describe('Should be validate title page', () => {
         })
 
         it('Work with RadioButton', () => {
-            cy.visit("/elementsweb.html");
             
             cy.get("[name='radioGroup1']").first().check().should("be.checked");
             cy.get("[name='radioGroup1']").last().check().should("be.checked");
@@ -46,7 +53,6 @@ describe('Should be validate title page', () => {
         })
 
         it('Work with CheckBox', () => {
-            cy.visit("/elementsweb.html");
 
             cy.get("[name='chkbox']").should("have.length", 4); 
             cy.get("[name='chkbox']")
@@ -65,8 +71,6 @@ describe('Should be validate title page', () => {
         })
 
         it('Work with single select', () => {
-            cy.visit("/elementsweb.html");
-
             cy.get("[name='dropdownlist']")
                 .select("Item 2")
                 .should("have.value", "item2");
@@ -93,8 +97,6 @@ describe('Should be validate title page', () => {
         })
 
         it('Work with multiple select', () => {
-            cy.visit("/elementsweb.html");
-
             cy.get("[name='multiselectdropdown']").select(["Item 1", "Item 3", "Item 6"]);
 
             cy.get("[name='multiselectdropdown']").then($el => {
