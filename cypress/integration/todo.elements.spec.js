@@ -8,7 +8,9 @@ describe("Todo Spec", () => {
     it('Should include new task', () => {
         const task = "Fix the bug";
 
-        cy.get('.todo-list li').should("have.length", 2);
+        //cy.get('.todo-list li').should("have.length", 2);
+        cy.xpath("//*[@class='todo-list']/li").should("have.length", 2)
+
 
         cy.get('[data-test="new-todo"]').type(`${task}{enter}`);
         cy.get('.todo-list li').should("have.length", 3);
@@ -52,4 +54,6 @@ describe("Todo Spec", () => {
         })
 
     })
+
+    
 })
