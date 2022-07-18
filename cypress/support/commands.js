@@ -23,3 +23,15 @@
 //
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
+
+import loc from './locators'
+
+Cypress.Commands.add('login', (environment, user, passwd) => {
+    cy.get(loc.LOGIN.TF_WORKSPACE).type(environment);
+    cy.get(loc.LOGIN.TF_USER).type(user);
+    cy.get(loc.LOGIN.TF_PASS).type(passwd);
+    cy.get(loc.LOGIN.BTN_ACCESS).click();
+
+    cy.get(loc.MAIN.IMG_LOGO).should("be.visible")
+})
+
