@@ -35,3 +35,8 @@ Cypress.Commands.add('login', (environment, user, passwd) => {
     cy.get(loc.MAIN.IMG_LOGO).should("be.visible")
 })
 
+Cypress.Commands.add('search', (description) => {
+    cy.get(loc.LOCAL_LIST.TF_SEARCH).type(description);
+    cy.get(loc.LOCAL_LIST.BTN_SEARCH).click();
+})
+

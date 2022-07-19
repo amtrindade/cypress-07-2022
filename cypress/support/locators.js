@@ -19,7 +19,8 @@ const locators = {
     LOCAL_ADD:{
         TF_DESCRIPTION: '#serviceLocal_description',
         TF_CORPORATE_NAME: '#serviceLocal_corporateName',
-        BTN_SAVE: '#formServiceLocal_doSave'
+        BTN_SAVE: '#formServiceLocal_doSave',
+        CHK_ACTIVE: '#serviceLocal_active'
 
 
     }
