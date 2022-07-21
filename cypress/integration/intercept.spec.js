@@ -6,13 +6,10 @@ context('Files', () => {
 
   beforeEach(() => {
     cy.visit('https://example.cypress.io/commands/files')
-  })
-
-  beforeEach(() => {
     cy.fixture('example.json').as('example')
   })
 
-  it('cy.fixture() - load a fixture', () => {
+  it('Should be intercerpt with load a fixture', () => {
     cy.intercept('GET', '**/comments/*', { fixture: 'example.json' }).as('getComment')
 
     cy.get('.fixture-btn').click()
@@ -22,13 +19,11 @@ context('Files', () => {
       .and('include', 'Using fixtures to represent data')
   })
 
-  it('get normal', () => {
+  it('Should be request api', () => {
     cy.request({
-        url: `https://jsonplaceholder.cypress.io/comments/1`,
-        method: 'GET'
+        method: 'GET',
+        url: `https://jsonplaceholder.cypress.io/comments/1`
       }).as('getComment');
-
-
 
     cy.get('@getComment').then(response => {
       expect(response.status).to.be.equal(200);
