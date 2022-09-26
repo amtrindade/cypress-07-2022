@@ -9,10 +9,28 @@ context('Files', () => {
     cy.fixture('example.json').as('example')
   })
 
-  it('Should be intercerpt with load a fixture', () => {
+  it('Should be intercept with load a fixture', () => {
     cy.intercept('GET', '**/comments/*', { fixture: 'example.json' }).as('getComment')
 
     cy.get('.fixture-btn').click()
+
+    cy.wait('@getComment').its('response.body')
+      .should('have.property', 'name')
+      .and('include', 'Using fixtures to represent data')
+  })
+
+  it.only('Should be intercept with load a fixture with request', () => {
+    cy.intercept('GET', '**/comments/*', { fixture: 'example.json' }).as('getComment')
+
+    cy.request({
+      method: 'GET',
+      url: 'https://jsonplaceholder.cypress.io/comments/1'
+    })
+    //cy.get('.fixture-btn').click()
+
+    // cy.get('@getComment').then(response => {
+    //   expect(response.body).to.have.property('name', 'Using fixtures to represent data"');
+    // })
 
     cy.wait('@getComment').its('response.body')
       .should('have.property', 'name')
